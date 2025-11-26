@@ -95,6 +95,7 @@ XLA/
 │   ├── test_data/
 │   └── test-result/
 ├── README.md
+├── app.py
 └── yolo11n.pt
 
 ## ⚙️ Cài đặt & Sử dụng
