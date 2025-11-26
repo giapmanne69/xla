@@ -102,6 +102,7 @@ app/
 ├── README.md
 └── yolo11n.pt
 
+```
 ## 📂 Giải thích cấu trúc thư mục
 
 ### 1. `dataset/` (Dữ liệu)
