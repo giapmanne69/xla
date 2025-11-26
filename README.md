@@ -78,31 +78,24 @@ Dưới đây là bảng đánh giá thực nghiệm giữa phương pháp Ảnh
 
 ## 📂 Cấu trúc dự án
 
-```
+```text
 XLA/
-├── __pycache__/
-├── datasets/                   # Thư mục dữ liệu
-│   ├── negative_data/          # Dữ liệu ảnh âm (đã xử lý có labels rỗng)
-│   │   ├── images/
-│   │   └── labels/
-│   └── negative_images/        # Ảnh cắt từ video (chưa xử lý labels)
-├── runs/                       # Log và kết quả training/detect
-│   └── detect/
-├── static/                     # File tĩnh cho Web
-│   ├── results/                # Kết quả đầu ra sau khi AI xử lý
-│   └── uploads/                # File người dùng tải lên
-├── templates/                  # Giao diện HTML
-│   └── index.html
-├── app.py                      # Backend Flask Server (Chạy Web App)
-├── best.onnx                   # Model tối ưu cho deploy (Intel Iris Xe/CPU)
-├── best.pt                     # Model PyTorch tốt nhất sau khi train
-├── cut_video.py                # Script cắt ảnh từ video để tạo Negative Samples
-├── main.py                     # Script chính (Tiện ích bổ sung)
-├── README.md                   # Tài liệu hướng dẫn
-├── requirements.txt            # Danh sách thư viện cần thiết
-├── video_duong_pho_vang.mp4    # Video nguồn để cắt ảnh đường phố vắng
-└── yolo11n.pt                  # Weights gốc pre-trained của YOLOv11
-```
+├── app/
+│   ├── dataset/
+│   │   ├── clahe_dataset/
+│   │   ├── origin_dataset/
+│   │   └── rgb_dataset/
+│   ├── processing/
+│   │   ├── predict.py
+│   │   ├── processing_clahe.py
+│   │   ├── processing_rgb.py
+│   │   └── train.py
+│   ├── static/
+│   ├── templates/
+│   ├── test_data/
+│   └── test-result/
+├── README.md
+└── yolo11n.pt
 
 ## ⚙️ Cài đặt & Sử dụng
 
