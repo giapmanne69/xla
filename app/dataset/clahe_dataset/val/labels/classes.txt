@@ -1,0 +1,7 @@
+driver_with_helmet
+bike
+driver
+passenger_with_helemt
+passenger
+driver_without_helmet
+passenger_without_helemt

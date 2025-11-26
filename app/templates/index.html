@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Phát hiện Mũ bảo hiểm Demo</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 30px; background-color: #f4f4f9; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 800px; margin: auto; }
+        h1 { color: #333; }
+        .upload-area { border: 2px dashed #ccc; padding: 30px; margin: 20px 0; cursor: pointer; }
+        .upload-area:hover { background-color: #f9f9f9; border-color: #666; }
+        #result-area { margin-top: 30px; display: none; }
+        img, video { max-width: 100%; border-radius: 8px; border: 2px solid #ddd; }
+        #loading { display: none; font-weight: bold; color: #007bff; }
+        button { padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚦 Demo Phát Hiện Mũ Bảo Hiểm (Grayscale YOLOv11)</h1>
+        <p>Hỗ trợ: Ảnh (Phân tích frame) & Video (Chế độ Tracking/Follow)</p>
+
+        <form id="upload-form">
+            <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                <p>📂 Nhấn vào đây để chọn ảnh hoặc video từ máy</p>
+                <input type="file" id="file-input" name="file" accept="image/*,video/*" style="display: none;" required>
+                <p id="file-name" style="color: #666; font-size: 0.9em;"></p>
+            </div>
+            <button type="submit">🚀 Bắt đầu Phân tích</button>
+        </form>
+        
+        <div id="loading">⏳ Đang xử lý... Vui lòng đợi (Video sẽ lâu hơn ảnh)</div>
+
+        <div id="result-area">
+            <h3>Kết quả phân tích:</h3>
+            <div id="media-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        const fileInput = document.getElementById('file-input');
+        const fileNameDisplay = document.getElementById('file-name');
+        const loading = document.getElementById('loading');
+        const resultArea = document.getElementById('result-area');
+        const mediaContainer = document.getElementById('media-container');
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = `Đã chọn: ${fileInput.files[0].name}`;
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (fileInput.files.length === 0) return alert("Vui lòng chọn file!");
+
+            const formData = new FormData(form);
+            loading.style.display = 'block';
+            resultArea.style.display = 'none';
+            mediaContainer.innerHTML = '';
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    let mediaElement;
+                    if (data.type === 'image') {
+                        mediaElement = document.createElement('img');
+                        mediaElement.src = data.result_url;
+                    } else {
+                        mediaElement = document.createElement('video');
+                        mediaElement.src = data.result_url;
+                        mediaElement.controls = true;
+                        mediaElement.autoplay = true;
+                    }
+                    mediaContainer.appendChild(mediaElement);
+                    resultArea.style.display = 'block';
+                } else {
+                    alert('Lỗi: ' + data.error);
+                }
+            } catch (error) {
+                alert('Lỗi kết nối server!');
+                console.error(error);
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

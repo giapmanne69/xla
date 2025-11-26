@@ -1,0 +1,4 @@
+train: app\apply_cache_lab_image\images
+val: app\apply_cache_lab_image\labels
+nc: 7
+names: ['driver_with_helmet', 'bike', 'driver', 'passenger_with_helemt', 'passenger', 'driver_without_helmet', 'passenger_without_helemt']
