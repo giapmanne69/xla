@@ -79,23 +79,27 @@ Dưới đây là bảng đánh giá thực nghiệm giữa phương pháp Ảnh
 ## 📂 Cấu trúc dự án
 
 ```text
-XLA/
-├── app/
-│   ├── dataset/
-│   │   ├── clahe_dataset/
-│   │   ├── origin_dataset/
-│   │   └── rgb_dataset/
-│   ├── processing/
-│   │   ├── predict.py
-│   │   ├── processing_clahe.py
-│   │   ├── processing_rgb.py
-│   │   └── train.py
-│   ├── static/
-│   ├── templates/
-│   ├── test_data/
-│   └── test-result/
-├── README.md
+app/
+├── dataset/
+│   ├── clahe_dataset/
+│   ├── origin_dataset/
+│   └── rgb_dataset/
+├── processing/
+│   ├── predict.py
+│   ├── processing_clahe.py
+│   ├── processing_rgb.py
+│   └── train.py
+├── static/
+│   ├── results/
+│   └── uploads/
+├── templates/
+├── test_data/
+├── test-result/
+│   ├── clahe/
+│   ├── origin/
+│   └── rgb/
 ├── app.py
+├── README.md
 └── yolo11n.pt
 
 ## ⚙️ Cài đặt & Sử dụng
