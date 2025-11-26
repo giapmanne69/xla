@@ -102,6 +102,32 @@ app/
 ├── README.md
 └── yolo11n.pt
 
+## 📂 Giải thích cấu trúc thư mục
+
+### 1. `dataset/` (Dữ liệu)
+Chứa 3 bộ dataset phục vụ cho quá trình huấn luyện và kiểm thử:
+- **`clahe_dataset/`**: Bộ dữ liệu đã được áp dụng phương pháp cân bằng lược đồ xám (CLAHE) trên không gian màu LAB nhằm tăng cường độ tương phản.
+- **`origin_dataset/`**: Bộ dữ liệu ảnh gốc chưa qua xử lý.
+- **`rgb_dataset/`**: Bộ dữ liệu áp dụng kỹ thuật ảnh ghép lai (Hybrid composite).
+
+### 2. `processing/` (Xử lý logic)
+Chứa các mã nguồn Python chính:
+- **`predict.py`**: Hàm dự đoán chạy trực tiếp (local). Tích hợp kỹ thuật **SAHI** (Slicing Aided Hyper Inference) để cắt ảnh, giúp tăng độ chính xác khi nhận diện vật thể nhỏ.
+- **`processing_clahe.py`**: Script chuyển đổi từ ảnh gốc sang ảnh xử lý theo kỹ thuật CLAHE (LAB).
+- **`processing_rgb.py`**: Script chuyển đổi từ ảnh gốc sang ảnh xử lý theo kỹ thuật ghép lai.
+- **`train.py`**: Script thực hiện huấn luyện mô hình với các tham số đã cấu hình.
+
+### 3. Thành phần Ứng dụng Web
+- **`app.py`**: File khởi chạy ứng dụng web (Main entry point).
+- **`templates/`**: Chứa mã nguồn Frontend (Giao diện người dùng).
+- **`static/`**: Thư mục lưu trữ tài nguyên tĩnh:
+  - Ảnh người dùng tải lên để phân tích.
+  - Ảnh kết quả sau khi mô hình xử lý xong.
+
+### 4. Kiểm thử Local
+- **`test_data/`**: Thư mục chứa dữ liệu hình ảnh để chạy thử nghiệm thủ công.
+- **`test-result/`**: Thư mục chứa kết quả đầu ra khi chạy trực tiếp file `predict.py`.
+
 ## ⚙️ Cài đặt & Sử dụng
 
 ### 1\. Yêu cầu hệ thống
@@ -112,12 +138,11 @@ app/
 ### 2\. Cài đặt thư viện
 
 ```bash
-pip install -r requirements.txt
-# Hoặc cài thủ công:
 pip install ultralytics flask opencv-python onnx onnxruntime
 ```
+### 3\. Đưa đường dẫn file best.pt (nằm trong dataset) của mô hình đã được train theo phương pháp bạn muốn vào trong file app.py.
 
-### 3\. Chạy ứng dụng Web (Demo)
+### 4\. Chạy ứng dụng Web (Demo)
 
 Kết nối Camera và chạy lệnh sau:
 
