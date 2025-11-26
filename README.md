@@ -6,7 +6,7 @@
 
 Tại Việt Nam, tai nạn giao thông liên quan đến việc không đội mũ bảo hiểm vẫn là vấn đề nhức nhối. Dự án này xây dựng một hệ thống tự động phát hiện người đi xe máy không đội mũ bảo hiểm theo thời gian thực (Real-time) từ Camera giám sát.
 
-Hệ thống được tối ưu hóa để chạy trên các thiết bị máy tính cá nhân thông thường (như Laptop dùng chip Intel Iris Xe) mà vẫn đảm bảo tốc độ cao nhờ sử dụng **YOLOv11 Nano** và định dạng **ONNX**. Ngoài ra, hệ thống còn áp dụng cả SAHI - thuật toán cắt nhỏ ảnh và đưa vào YOLO để soi thật kỹ từng ảnh.
+Hệ thống được tối ưu hóa để chạy trên các thiết bị máy tính cá nhân thông thường (như Laptop dùng chip Intel Iris Xe) mà vẫn đảm bảo tốc độ cao nhờ sử dụng **YOLOv11 Nano**. Ngoài ra, hệ thống còn áp dụng cả SAHI - thuật toán cắt nhỏ ảnh và đưa vào YOLO để soi thật kỹ từng ảnh.
 
 ## 🚀 Tính năng nổi bật (Key Features)
 

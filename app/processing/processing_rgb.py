@@ -60,7 +60,7 @@ def process_dataset(source_dir, dest_dir, target_size=(416, 416)):
 # --- CẤU HÌNH ---
 INPUT_DIR_TRAIN = "datasets/helmet_original"  # Ảnh màu gốc
 OUTPUT_DIR = "datasets/helmet_composite" # Folder mới
-INPUT_DIR_VAL = "datasets/helmet_original"  # Ảnh màu gốc
+INPUT_DIR_VAL = "datasets/helmet_original" 
 
 if __name__ == "__main__":
     process_dataset(INPUT_DIR_TRAIN, OUTPUT_DIR)
